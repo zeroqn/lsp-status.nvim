@@ -122,10 +122,10 @@ local function statusline_lsp(bufnr)
   end
 
   if base_status ~= '' then
-    return symbol .. base_status .. ' '
+    return symbol .. base_status
   end
 
-  return symbol .. config.indicator_ok .. ' '
+  return symbol .. config.indicator_ok
 end
 
 local function get_component_functions()
