@@ -42,11 +42,16 @@ local function statusline_lsp(bufnr)
     return ''
   end
 
-  local buf_diagnostics = diagnostics(bufnr)
+  local buf_diagnostics = {}
   local buf_messages = messages()
   local only_hint = true
   local some_diagnostics = false
   local status_parts = {}
+
+  if config.show_diagnostics then
+    buf_diagnostics = diagnostics(bufnr)
+  end
+
   if buf_diagnostics.errors and buf_diagnostics.errors > 0 then
     table.insert(status_parts, config.indicator_errors .. config.indicator_separator .. buf_diagnostics.errors)
     only_hint = false
