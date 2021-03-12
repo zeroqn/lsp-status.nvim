@@ -117,7 +117,7 @@ local function statusline_lsp(bufnr)
   if config.current_function then
     local current_function = vim.b.lsp_current_function
     if current_function and current_function ~= '' then
-      symbol = symbol .. '(' .. current_function .. ') '
+      symbol = symbol .. '(' .. current_function .. ')'
     end
   end
 
