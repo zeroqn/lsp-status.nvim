@@ -28,10 +28,12 @@ local function progress_callback(_, _, msg, client_id)
         messages[client_id].progress[msg.token].spinner + 1
     elseif val.kind == 'end' then
       if messages[client_id].progress[msg.token] == nil then
+        -- nil if lsp client isn't attached
+        local client = clients[client_id] or 'client id ' .. client_id
         vim.api.nvim_command('echohl WarningMsg')
         vim.api.nvim_command(
           'echom "[lsp-status] Received `end` message with no corresponding `begin` from  '
-            .. clients[client_id] .. '!"')
+            .. client .. '!"')
         vim.api.nvim_command('echohl None')
       else
         messages[client_id].progress[msg.token].message = val.message
